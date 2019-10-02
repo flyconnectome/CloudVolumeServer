@@ -1,10 +1,13 @@
 import datetime
 import json
 import numpy as np
+import traceback
 
 from cloudvolume import CloudVolume
 
-import process, config
+# Import local modules
+import process
+import config
 
 from flask import Flask, request, make_response, jsonify
 app = Flask(__name__)
@@ -72,9 +75,10 @@ def values():
     try:
         seg_ids = process.get_multiple_ids(locs, vol,
                                            max_workers=config.MaxWorkers)
-    except BaseException as e:
-        app.logger.error('Error: {}'.format(e))
-        return {'error': str(e)}
+    except BaseException:
+        tb = traceback.format_exc()
+        app.logger.error('Error: {}'.format(tb))
+        return make_response(jsonify({'error': str(tb)}), 500)
 
     return jsonify(seg_ids.tolist())
 
