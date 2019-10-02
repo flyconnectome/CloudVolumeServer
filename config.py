@@ -4,7 +4,7 @@ import os
 CloudVolumeKwargs = dict(
                          cloudpath="",
                          parallel=True,
-                         cache=False,
+                         cache=True,
                          fill_missing=True,
                          progress=False
                        )
