@@ -65,6 +65,10 @@ def values():
 
     app.logger.debug('Locations queried: {}'.format(str(locs)))
 
+    if locs.shape[0] > config.MaxLocations:
+        err = {'error': 'Max number of locations ({}) exceeded'.format(config.MaxLocations)}
+        return make_response(jsonify(err), 400)
+
     try:
         seg_ids = process.get_multiple_ids(locs, vol,
                                            max_workers=config.MaxWorkers)

@@ -11,3 +11,6 @@ CloudVolumeKwargs = dict(
 
 # Number of cores used to parallel fetching of locations
 MaxWorkers = os.cpu_count() - 5
+
+# Max number of locations per query
+MaxLocations = 10e3
