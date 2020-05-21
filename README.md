@@ -80,7 +80,7 @@ coords = [[58695, 28631,   696],
           [58691, 28635,   698]]
 
 url = 'http://your-server.url/seg/'
-resp = requests.post(url, json=coords)
+resp = requests.post(url, json={'locations':coords})
 
 print('Segment IDs:', resp.json())
 ```
