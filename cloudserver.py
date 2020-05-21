@@ -55,7 +55,7 @@ def values():
         return {'error': str(e)}
 
     if not locs:
-        make_response(jsonify({'error': 'No locations provided'}), 400)
+        return make_response(jsonify({'error': 'No locations provided'}), 400)
 
     if isinstance(locs, str):
         locs = json.loads(locs)
